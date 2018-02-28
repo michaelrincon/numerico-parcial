@@ -1,0 +1,16 @@
+Fx <- function(x) log(x+2)
+F1x <- function(x) sin(x)
+# Halla la raiz de Fx
+regula <- function(a,b) {
+x<-seq(a,b,0.1)
+error<-1
+while (error > 10.e-5) {
+x<-(Fx(b)*a-Fx(a)*b)/(Fx(b)-Fx(a))
+if (Fx(x) == 0) break
+if (Fx(x)*Fx(a) < 0) {b <- x}
+else {a <- x}
+error<-abs(Fx(x)/F1x(x))
+}
+}
+newton(1,3)
+

@@ -1,8 +1,8 @@
 def medidadetiempo(matriz, tama):
-	ptime = time.process_time()
+	inicio = time.process_time()
 	matri(matriz, tama)
-	etime = time.process_time( )
-	return float(etime - ptime)
+	fin = time.process_time( )
+	return float(fin - inicio)
 
 
 def matri(matriz, tama):

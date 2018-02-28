@@ -2,25 +2,24 @@
 rm(list=ls())
 Fx <- function(x) log(x+2)
 F1x <- function(x) sin(x)
-# Metodo de Newton
-# Halla la raiz de 
-Newton <- function(x0) {
-  x<-seq(0,2,0.01)
-  plot(x,Fx(x),type="l",col="green")
-  abline(h=0,col=green")
-  x<-x0-(Fx(x0)/F1x(x0))
-  y<-0
-  i<-1
-  conv<-0
-  while (error > 10.e-5) {
-    y<-x
-    x<-x-(Fx(x)/F1x(x))
-    conv<-x/y
-    if (Fx(x) == 0) break
-    error<-abs(Fx(x)/F1x(x))
-    points(rbind(c(x,0)),pch=19,cex=0.7,col="red")
-    cat("X=",x,"\t","E=",error,"\n")
-  }
+# Metodo de newton
+newtonGeneralizado <- function(x0) {
+	x<-seq(0,2,0.01)
+	plot(x,Fx(x),type="l",col="green")
+  	abline(h=0,col=green")
+ 	x<-x0-(Fx(x0)/F1x(x0))
+  	y<-0
+  	i<-1
+  	c<-0
+  	while (error > 10.e-5) {
+    		y<-x
+    		x<-x-(Fx(x)/F1x(x))
+    		c<-x/y
+    		if (Fx(x) == 0) break
+    		error<-abs(Fx(x)/F1x(x))
+    		points(rbind(c(x,0)),pch=19,cex=0.7,col="red")
+    		cat("X=",x,"\t","E=",error,"\n")
+  	}
 }
-Newton(1)
+newtonGeneralizado(1)
 

@@ -1,65 +1,46 @@
-# programa busca intervalos donde es posible encontrar raices
-rm(list=ls())
-Fx <- function(x) exp(x)
-buscador <- function(a,b) {
-i<-a
-j<-a
-x<-Fx(a)
-y<-Fx(i)
-while (b > i) {
-y<-Fx(i)
-if (x*y < 0)
-{
-cat("intervalo [",j," ",i,"]","\n")
-x<-Fx(i)
-j<-i
-}
-i<-i+1
-}
-}
-buscador(0.1,5)v
-rta intervalo [ 0.1 1.1 ]
+####################################################
+####################################################
+#metodo de biseccion hallar la raiz
 # Remueve todos los objetos creados
 rm(list=ls())
 Fx <- function(x) exp(x)
-# Halla la raiz de Fx
 biseccion <- function(a,b) {
-x<-seq(a,b,0.1)
-plot(x,Fx(x),type="l",col="blue")
-abline(h=0,col="blue")
-x<-b
-d<-(a+b)/2
-i<-0
-error<-abs(a-b)/2
-while (error > 1.e-4) {
-i<-i+1
-if (Fx(x) == 0) break
-if (Fx(x)*Fx(a) < 0) b <- x else {a <- x}
-d<-x
-x<-(a+b)/2
-#points(rbind(c(x,0)),pch=17,cex=0.7,col="red")
-text(x,0,i,cex=0.8,col="red")
-error<-abs(a-b)/2
-cat("X=",x,"\tE=",error,"\n")
+	x<-seq(a,b,0.1)
+	plot(x,Fx(x),type="l",col="blue")
+	abline(h=0,col="blue")
+	x<-b
+	d<-(a+b)/2
+	j<-0
+	error<-abs(a-b)/2
+	while (error > 1.e-5) {
+		j<-j+1
+		if (Fx(x) == 0) break
+		if (Fx(x)*Fx(a) < 0) b <- x else {a <- x}
+		d<-x
+		x<-(a+b)/2
+		text(x,0,i,cex=0.8,col="red")
+	error<-abs(a-b)/2
+	cat("X=",x,"\tE=",error,"\n")
+	}
 }
-}
-biseccion(0.1,1.1)
+biseccion(0.1,2)
+
+####################################################
+####################################################
+#metodo de Aitken.
 # Remueve todos los objetos creados
 rm(list=ls())
 Fx <- function(x) exp(x)
-# Halla la raiz de Fx
 Aitken <- function(a,b,c) {
-x<-0
-error<-1
-while (error > 1.e-4) {
-#if (Fx(x) == 0) break
-i<-x
-x<-(b-a)^2/(c-2*b+a)
-a<-b
-b<-c
-c<-x
-error<-abs(i-x)
-cat("X=",x,"\tE=",error,"\n")
+	x<-0
+	error<-1
+	while (error > 1.e-5) {
+		j<-x
+		x<-(b-a)^2/(c-2*b+a)
+		a<-b
+		b<-c
+		c<-x
+		error<-abs(j-x)
+	}
 }
-}
-Aitken(0.6,0.85,0.725) 
+Aitken(0.5,0.65,0.55) 
